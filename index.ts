@@ -1,28 +1,48 @@
-// Generics
+// Structural Type System
 
-// Generics provide variables to types. A common example is an array. An array without generics could contain anything. 
-// An array with generics can describe the values that the array contains.
+/**
+ * One of TS core principles is that type checking focuses on the shape that 
+ * values have. 
+ * This is sometimes called "duck typing" or "structural typing "
+ * 
+ */
 
-type StringArray = Array<string>
-type NumberArray = Array<number>
-type ObjectWithNameArray = Array<{ name: string }>
-
-
-
-
-//We can declare our own types that use generics 
-interface Backpack<Type> {
-    add: (obj: Type) => void
-    get: () => Type
+/**
+ * In a strctual type system, if two objects have the same shape, 
+ * they are considered to be of the same type
+ * 
+ */
+interface Point {
+    x:number;
+    y:number
 }
 
-//This line is a shortcut to tell TS there is constant backpack add to not worry about where it come from 
-declare const backpack: Backpack<string>;
+function logPoint(p:Point){
+    console.log(`${p.x}, ${p.y}`);
+}
+
+const point = {x:12,y:20}
+logPoint(point)
+const rect = { x: 33, y: 3,m :5, width: 30, height: 80 }; //33,3
+logPoint(rect)
+
+// There is no difference between how classes and obejcts conforms to shapes 
 
 
-//object is a string , becuase we decalred it above as the variable part of Backpack
-const object = backpack.get();
 
-//Since the backpack varibale is a string , you can't pass a number to the add function 
-backpack.add(23);
-// Argument of type 'number' is not assignable to parameter of type 'string'.
+class VirtualPoint{
+    x:number;
+    y:number;
+
+    constructor(x:number,y:number){
+        this.x = x;
+        this.y = y
+    }
+}
+
+const newPoint = new VirtualPoint(13,56);
+logPoint(newPoint);
+
+// If the object or class has all the required properties, TypeScript will say they match, regardless of the implementation details.
+
+
