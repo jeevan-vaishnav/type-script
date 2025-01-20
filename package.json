@@ -1,0 +1,26 @@
+{
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "name": "type-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeevan-vaishnav/type-script.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeevan-vaishnav/type-script/issues"
+  },
+  "homepage": "https://github.com/jeevan-vaishnav/type-script#readme"
+}
