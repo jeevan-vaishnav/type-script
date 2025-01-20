@@ -1,44 +1,24 @@
-// Simple print hello world 
-let helloworld: string = "hello world"
-console.log(helloworld)
+console.log("Composing Types");
+//With TS, we can create complex types by combining simple ones, There are two popular ways to do so :
+//unions and genrics 
 
-// We can explicitly describe this objects shape using interface declaration
-interface User {
-    name: string,
-    id: number
+/**Unions */
+
+type MyBool = true | false
+/**Note: If you hover over MyBool above, you'll see that it is classes as boolean. That's property of the structual  
+ * Type System more on the below */
+
+/**
+ * A popular use case for union types is to describe the set of string or number lteral that a value is allowed to be:
+ * 
+ */
+
+type WindowState = "open" | "closed" | "minimized"
+type LockState = "locked" | "unlocked"
+type PossitiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+
+/**Union provide a way to handle different types too. For example, you have a function that takes an array or a string */
+
+function getLength(obj: string | string[]) {
+    return obj.length
 }
-
-// Defining Types: create a object with inrefred type which includes string and number 
-const user: User = {
-    name: "jeevan",
-    id: 10
-}
-console.log(user)
-// Js supports classes and object-oriented programming , so does TS. We can use interface with classes 
-interface ScriptUser {
-    name: string,
-    isTS: boolean
-}
-
-class UserAccount {
-    name: string;
-    isTS: boolean;
-
-    constructor(name: string, isTS: boolean) {
-        this.name = name
-        this.isTS = isTS
-    }
-}
-const ObjUser: ScriptUser = new UserAccount("jeevan", true);
-console.log(ObjUser)
-
-// TS Function : No errors
-interface UserSample {
-    name: string
-}
-
-function getUser(user: UserSample) {
-    console.log(user);
-}
-
-getUser({ name: "Jeevan" });
