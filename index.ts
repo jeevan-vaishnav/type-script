@@ -1,70 +1,53 @@
-// Defining a Union Type
+// Type Aliases 
+/**
+ * We've been using object types and union types by writing them directly in type annotations.
+ * This is convenient, but its common to want to use the same type more than once and refer
+ * to it by single name.
+ */
 
-/**The first way to combine types you might see is a union type */
+/**A type alias is excatly that - a name for any type. The syntax for a type alis is: */
 
-function printId(id: number | string) {
-    console.log("Your ID is : " + id);
-}
-//ok
-printId(10);
-//ok
-printId("202");
-//error
-// printId({myID:22455});
-// Argument of type '{ myID: number; }' is not assignable to parameter of type 'string | number'.
-
-
-// The separator of the union members is allowed before the first element, 
-// so you could also write this:
-
-function printTextOrNumberOrBool(textOrNumberOrBool: string | number | boolean) {
-    console.log(textOrNumberOrBool)
+type typePoint = {
+    x: number;
+    y: number;
 }
 
-//ok
-printTextOrNumberOrBool(10);
-//ok
-printTextOrNumberOrBool("10");
-//ok
-printTextOrNumberOrBool(true);
-//error
-// printTextOrNumberOrBool({textOrNumberOrBool:10});
-
-// Argument of type '{ textOrNumberOrBool: number; }' 
-// is not assignable to parameter of type 'string | number | boolean'.ts(2345)
-
-
-
-function PrintKro(id: number | string) {
-
-    if (typeof id === 'string') {
-        //In this branch, id is of type string
-        console.log(id.toUpperCase())
-    } else {
-        console.log(id)
-    }
+// extactly the same as the earlier example 
+function printCoord(pt: typePoint) {
+    console.log(`The coordinate's x value is: ${pt.x} and y value is: ${pt.y} `)
 }
-PrintKro(10)
 
-//Another example is to use a function like Array.isArray
+printCoord({ x: 10, y: 30 })
 
-function WelcomeTS(name: string | string[]) {
-    if (Array.isArray(name)) {
-        console.log(`This is array : ${name}`)
-    }else{
-        console.log(name)
-    }
+/**
+ * We can actually use a type alias to give a name to any type at all, not just an object type
+ * For example, a type alias can name a union type 
+ */
+
+type ID = number | string
+
+
+/**
+ * Noe that aliases are only aliases - we cannot use type aliases to create diff/distnic version
+ * of the same type . When you use the alis, it's exactly as if you had written the aliased type. 
+ * In other words, this code might look illegal , but is OK according to TypeScript becuase both types are alases for the same type
+ */
+
+
+/**
+ * Type Script becuase both types are alises for the same type 
+ */
+
+declare function getInput(): string
+declare function sanitize(str: string): string
+
+type UesrInputSanitizedString = string;
+function sanitizeInput(str: string): UesrInputSanitizedString {
+    return sanitize(str)
 }
-WelcomeTS('Jeevan')
-WelcomeTS(['You', 'Are', 'Good', 'TS Developer'])
 
-
-//Return type as inferred as number | string
-function getFirstThree (x:number[] | string){
-    return x.slice(0,3)
-}
-console.log(getFirstThree([10,30,20,40]))
-console.log(getFirstThree('Jeevan'))
-
-
+//create a sanitized input 
+let userInput = sanitizeInput(getInput());
+//Can still be reassigned with a string though 
+userInput = 'newInput '
 
