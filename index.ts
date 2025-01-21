@@ -1,53 +1,66 @@
-// Type Aliases 
-/**
- * We've been using object types and union types by writing them directly in type annotations.
- * This is convenient, but its common to want to use the same type more than once and refer
- * to it by single name.
- */
-
-/**A type alias is excatly that - a name for any type. The syntax for a type alis is: */
-
-type typePoint = {
-    x: number;
-    y: number;
+// Interface
+// An interface declaretion is another way as name to an  object type 
+interface Obj {
+    x: number,
+    y: number
 }
-
-// extactly the same as the earlier example 
-function printCoord(pt: typePoint) {
-    console.log(`The coordinate's x value is: ${pt.x} and y value is: ${pt.y} `)
+function Intre(thing: Obj) {
+    console.log(`The x value is ${thing.x} and y value is ${thing.y}`)
 }
+Intre({x:10,y:20})
 
-printCoord({ x: 10, y: 30 })
-
-/**
- * We can actually use a type alias to give a name to any type at all, not just an object type
- * For example, a type alias can name a union type 
- */
-
-type ID = number | string
-
-
-/**
- * Noe that aliases are only aliases - we cannot use type aliases to create diff/distnic version
- * of the same type . When you use the alis, it's exactly as if you had written the aliased type. 
- * In other words, this code might look illegal , but is OK according to TypeScript becuase both types are alases for the same type
+/**Just like when we used type alias above, the example works just as if we had used an
+ * anonymous object type.
+ * TS is only concerned with the structure of the value we passed to Intre - 
+ * It only cares that it has the expcted properties. 
+ * Being concerned only with the structure annd capabilites if typpes is why we call
+ * type script a structurally typed system 
  */
 
 
 /**
- * Type Script becuase both types are alises for the same type 
+ * Diff between type alias and interface
+ * Interface:
+ * 1.Extending an interface
+ * 2.interface Animal{name:string}
+ * 3.interface Bear extends Animal{
+ * honney:boolean
+ * }
+ * 4.const bear  = getBear();
+ * bear.name;
+ * bear.honney;
+ * Type:
+ * 1.Extending type via intersection
+ * 2.type Animal = {
+ * name:string
+ * }
+ * 3.tyep Bear = Animal & {
+ * honney:boolean
+ * }
+ * const bear = getBear();
+ * bear.name;
+ * bear.honney
  */
 
-declare function getInput(): string
-declare function sanitize(str: string): string
 
-type UesrInputSanitizedString = string;
-function sanitizeInput(str: string): UesrInputSanitizedString {
-    return sanitize(str)
-}
 
-//create a sanitized input 
-let userInput = sanitizeInput(getInput());
-//Can still be reassigned with a string though 
-userInput = 'newInput '
+/**Adding new fields an exiting interfacen and typo
+ * Interface:
+ * interface Window{
+ * titile:string
+ * }
+ * interface Window{
+ * ts:TypeScriptAPI
+ * }
+ * 
+ * const src = 'const a = "Hello World"';
+ * window.ts.transpileModule(src, {});
+ * A type cannot be changed after being created
+ * type Window = {
+ * title: string;}
+ * type Window = {
+ * ts: TypeScriptAPI;
+ * }
+ * // Error: Duplicate identifier 'Window'.
+ */
 
