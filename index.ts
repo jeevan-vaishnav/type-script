@@ -55,7 +55,16 @@ function WelcomeTS(name: string | string[]) {
         console.log(name)
     }
 }
-
 WelcomeTS('Jeevan')
 WelcomeTS(['You', 'Are', 'Good', 'TS Developer'])
+
+
+//Return type as inferred as number | string
+function getFirstThree (x:number[] | string){
+    return x.slice(0,3)
+}
+console.log(getFirstThree([10,30,20,40]))
+console.log(getFirstThree('Jeevan'))
+
+
 
