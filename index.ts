@@ -33,3 +33,29 @@ printTextOrNumberOrBool(true);
 // Argument of type '{ textOrNumberOrBool: number; }' 
 // is not assignable to parameter of type 'string | number | boolean'.ts(2345)
 
+
+
+function PrintKro(id: number | string) {
+
+    if (typeof id === 'string') {
+        //In this branch, id is of type string
+        console.log(id.toUpperCase())
+    } else {
+        console.log(id)
+    }
+}
+PrintKro(10)
+
+//Another example is to use a function like Array.isArray
+
+function WelcomeTS(name: string | string[]) {
+    if (Array.isArray(name)) {
+        console.log(`This is array : ${name}`)
+    }else{
+        console.log(name)
+    }
+}
+
+WelcomeTS('Jeevan')
+WelcomeTS(['You', 'Are', 'Good', 'TS Developer'])
+
