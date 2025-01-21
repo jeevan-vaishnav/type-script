@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "nodemon": "^3.1.9",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
@@ -22,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/jeevan-vaishnav/type-script/issues"
   },
-  "homepage": "https://github.com/jeevan-vaishnav/type-script#readme"
+  "homepage": "https://github.com/jeevan-vaishnav/type-script#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
