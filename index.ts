@@ -1,30 +1,15 @@
-//Implement keyword:
-type Animal = {
-    name: string;
-    voice(): string
+// Define Assignment Assertion
+
+let dice!: number
+
+function rollDice() {
+    dice = (Math.floor(Math.random() * 6) + 1)
+    console.log(Math.floor(Math.random() * 6) + 1)
 }
 
+rollDice();
+// console.log(dice) //Variable 'dice' is used before being assigned.ts(2454)let dice: number
+console.log("Currrent Roll: " + dice)
+rollDice();
+console.log("After Roll: " + dice)
 
-function log(animalName: Animal) {
-    console.log(`The name is ${animalName.name} and vvoice is ${animalName.voice()}`)
-}
-
-
-class Cat implements Animal {
-
-    constructor(public name: string) { }
-
-    voice() { return 'meow' }
-
-}
-
-
-class Dog implements Animal {
-
-    constructor(public name: string) { }
-
-    voice() { return 'woof' }
-}
-
-log(new Cat('CAT'))
-log(new Dog('DOG'))
