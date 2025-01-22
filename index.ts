@@ -13,3 +13,17 @@ console.log("Currrent Roll: " + dice)
 rollDice();
 console.log("After Roll: " + dice)
 
+
+class PointA {
+    x!: number
+    y!: number
+    constructor() {
+        this.MathRandom()
+    }
+
+    MathRandom() {
+        this.x = Math.random()
+        this.y = Math.random()
+    }
+
+}
