@@ -1,34 +1,25 @@
+// Call Signature
+type Add = {
+    (a: number, b: number): number,
+    (a: number, b: number, c: number): number,
+    debugName?: string
+};
 
-function reverse(string: string): string
-function reverse(string: string[]): string[]
-// Function Overloading 
-function reverse(stringOfStringArray: string | string[]) {
-    if (typeof stringOfStringArray == 'string') {
-        return stringOfStringArray.split('').reverse().join('')
-    } else {
-        return stringOfStringArray.slice().reverse();
-    }
+const add: Add = (a: number, b: number, c?: number) => {
+    return a + b + (c != null ? c : 0);
 }
 
-// string
-console.log(reverse('jeevan'))
-//string array
-console.log(reverse(['j', 'e', 'e', 'v', 'a', 'n']))
+add.debugName = 'Addition Function'
+console.log(add(10, 20));
+console.log(add(10, 20, 30));
 
-//Another Example
-function makeDate(timestamp:number):Date
-function makeDate(year:number,month:number,day:number):Date
-function makeDate(timesstampyear:number,month?:number,day?:number): Date {
-    if(month != null && day != null){
-        return new Date(timesstampyear,month - 1,day)
-    }else{
-        return new Date(timesstampyear)
-    }
+//Lets example
+
+type PointClass = {
+    new(x: number, y: number): { x: number, y: number }
+    new(x: number, y: number, c: number): { x: number, y: number, c: number }
+    (x: number, y: number): { x: number, y: number }
+    (x: number, y: number): { x: number, y: number }
+    debugName?: string
 }
 
-const doomsday = makeDate(2000,1,1) //1 Jan 2000
-console.log(doomsday)
-const epoch = makeDate(0) // 1 Jun 1970
-console.log(epoch)
-// const invalid = makeDate(2000, 1);
-// console.log(invalid)
