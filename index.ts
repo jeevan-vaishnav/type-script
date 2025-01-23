@@ -1,25 +1,23 @@
-// Call Signature
-type Add = {
-    (a: number, b: number): number,
-    (a: number, b: number, c: number): number,
-    debugName?: string
-};
-
-const add: Add = (a: number, b: number, c?: number) => {
-    return a + b + (c != null ? c : 0);
+abstract class Command {
+    abstract commandLine(): string
+    execute() {
+        console.log('Executing:', this.commandLine())
+    }
 }
 
-add.debugName = 'Addition Function'
-console.log(add(10, 20));
-console.log(add(10, 20, 30));
-
-//Lets example
-
-type PointClass = {
-    new(x: number, y: number): { x: number, y: number }
-    new(x: number, y: number, c: number): { x: number, y: number, c: number }
-    (x: number, y: number): { x: number, y: number }
-    (x: number, y: number): { x: number, y: number }
-    debugName?: string
+class GitResetCommand extends Command {
+    commandLine() {
+        return 'git reset --hard'
+    }
 }
 
+class GitFetchCommand extends Command {
+    commandLine() {
+        return 'git fetch --all'
+    }
+}
+
+new GitResetCommand().execute()
+new GitFetchCommand().execute()
+
+// new Command() // Error: Cannot create an instance of abstract class
