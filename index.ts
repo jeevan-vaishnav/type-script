@@ -1,31 +1,34 @@
-type Person =  {
-    name:string,
-    dateOfBirth?:Date
-}
 
-// A mock implementation of loadPerson, you can replace it with the real function
-function loadPerson(): Person | null {
-    return {
-        name: "John Doe",
-        dateOfBirth: new Date("1990-01-01")
+function reverse(string: string): string
+function reverse(string: string[]): string[]
+// Function Overloading 
+function reverse(stringOfStringArray: string | string[]) {
+    if (typeof stringOfStringArray == 'string') {
+        return stringOfStringArray.split('').reverse().join('')
+    } else {
+        return stringOfStringArray.slice().reverse();
     }
 }
 
+// string
+console.log(reverse('jeevan'))
+//string array
+console.log(reverse(['j', 'e', 'e', 'v', 'a', 'n']))
 
-function assert(condition:unknown, message:string): asserts condition{
-    if(!condition) throw new Error(message)
+//Another Example
+function makeDate(timestamp:number):Date
+function makeDate(year:number,month:number,day:number):Date
+function makeDate(timesstampyear:number,month?:number,day?:number): Date {
+    if(month != null && day != null){
+        return new Date(timesstampyear,month - 1,day)
+    }else{
+        return new Date(timesstampyear)
+    }
 }
 
-function assertDate(value:unknown) :asserts value is Date{
-    if(value instanceof Date) return 
-    else throw new TypeError('value is not a date')
-}
-
-const maybePerson = loadPerson();
-
-assert(maybePerson != null, 'Could not load person')
-console.log('Name:', maybePerson.name)
-
-assertDate(maybePerson.dateOfBirth)
-console.log('Date of Birth:', maybePerson.dateOfBirth.toISOString())
-
+const doomsday = makeDate(2000,1,1) //1 Jan 2000
+console.log(doomsday)
+const epoch = makeDate(0) // 1 Jun 1970
+console.log(epoch)
+// const invalid = makeDate(2000, 1);
+// console.log(invalid)
