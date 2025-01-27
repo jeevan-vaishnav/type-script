@@ -1,14 +1,12 @@
-//Const assertion
-function layout(setting: {
-    align: 'left' | 'center' | 'right',
-    padding: number
-}) {
-    console.log('Performing layout:', setting)
+// this paramter
+function double(this:{value:number}){
+    this.value = this.value  * 2
 }
 
-const example = {
-    align: 'left' as const,
-    padding: 0
+const valid = {
+    value:10,
+    double,
 }
 
-layout(example)
+valid.double()
+console.log(valid.value) //20
