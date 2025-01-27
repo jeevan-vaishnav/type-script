@@ -1,22 +1,24 @@
-// Generic Constraints
+// Dealing with temporal uncertainty
 
-type NameFields = {firstName:string,lastName:string}
 
-function addFullName<T extends NameFields>(obj:T):T & {fullname:string} {
-    return {
-        ...obj,
-        fullname:`${obj.firstName} ${obj.lastName}`
-    }
+let suffix: string | null = getSuffix();
+
+if (suffix != null) {
+
+    let exampleLocal = suffix
+    let exampleOne: string = 'jeevan' + exampleLocal.toLowerCase();
+
+    ['jeevan', 'vaishnav'].forEach((name) => {
+        let exampleTwo: string = name + exampleLocal.toLowerCase();
+    })
 }
 
-const john = addFullName({
-    email:"john@gmail.com",
-    firstName:'John',
-    lastName:'Doe'
-})
+let exampleAnother: string | null = forExample()
+if (example != null) {
+    const exampleLocal = exampleAnother
+    setTimeout(() => {
+        console.log(exampleLocal.toUpperCase())
+    })
+}
 
-console.log(john.email)// john@gmail.com
-console.log(john.firstName)// John Doe
-
-const Jane = addFullName({firstName:'jane',lastName:'Doe'})
-console.log(Jane)
+exampleAnother = null;
