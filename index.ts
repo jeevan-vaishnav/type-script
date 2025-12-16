@@ -1,49 +1,30 @@
-/**never type */
-const fail = (msg: string) => {
-    throw new Error(msg);
+console.log("Implment Keyword");
+type localAnimal = {
+    name: string,
+    voice(): string
+}
+function logAnimal(locAnimal: localAnimal) {
+    console.log(`animal ${locAnimal.name} and voice ${locAnimal.voice()}`)
 }
 
-const sing = function () {
-    while (true) {
-        console.log("Never gonna give you up")
-        console.log("Never gonna let you down")
-        console.log("Never gonna run around and desert you")
-        console.log("Never gonna make your cry")
-        console.log("Never gonna say goodbye")
-        console.log("never gonna tell a lie and hurt you")
+function voiceA(): string {
+    return "wow"
+}
+logAnimal({ name: "Cat (w/o class)", voice: voiceA });
+
+// lets try to implements incorrectly
+class CatA implements localAnimal {
+    constructor(public name: string) { }
+    voice(): string {
+        return "wow"
     }
 }
 
-let exampleNever: never;
-
-
-type SquareA = {
-    kind: "square",
-    size: number,
+class DogA implements localAnimal {
+    constructor(public name: string) { }
+    voice(): string { return "woof" }
 }
 
-type CircleA = {
-    kind: "circle",
-    radius: number
-}
+logAnimal(new CatA("Cat by class"))
+logAnimal(new DogA("Dog by class"))
 
-type ReactangleA = {
-    kind: "reactangle",
-    width: number,
-    height: number
-}
-
-type ShapeA = | SquareA | ReactangleA | CircleA;
-
-function areaA(s: ShapeA) {
-    if (s.kind === 'square') {
-        return s.size * s.size
-    } else if (s.kind === "reactangle") {
-        return s.width * s.height
-    } else if (s.kind === "circle") {
-        return Math.PI * (s.radius ** 2);
-    }
-    const _ensureAllCaseAreHandle: never = s;
-    return _ensureAllCaseAreHandle
-
-}
