@@ -1,30 +1,28 @@
-console.log("Implment Keyword");
-type localAnimal = {
-    name: string,
-    voice(): string
-}
-function logAnimal(locAnimal: localAnimal) {
-    console.log(`animal ${locAnimal.name} and voice ${locAnimal.voice()}`)
+// Definte asignment assertion 
+
+let diceA!: number
+
+function DiceFun() {
+    diceA = (Math.floor(Math.random() * 6) + 1)
 }
 
-function voiceA(): string {
-    return "wow"
-}
-logAnimal({ name: "Cat (w/o class)", voice: voiceA });
+DiceFun();
+console.log("Dice is", diceA);
 
-// lets try to implements incorrectly
-class CatA implements localAnimal {
-    constructor(public name: string) { }
-    voice(): string {
-        return "wow"
+DiceFun();
+console.log("Dice is ", diceA)
+
+// example 2
+class PointATest {
+    x!: number;
+    y!: number;
+    constructor() {
+        // this.x = Math.random();
+        // this.y = Math.random();
+        this.moveRandom();
+    }
+    moveRandom() {
+        this.x = Math.random();
+        this.y = Math.random();
     }
 }
-
-class DogA implements localAnimal {
-    constructor(public name: string) { }
-    voice(): string { return "woof" }
-}
-
-logAnimal(new CatA("Cat by class"))
-logAnimal(new DogA("Dog by class"))
-
