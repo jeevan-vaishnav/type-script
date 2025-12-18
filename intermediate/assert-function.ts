@@ -1,6 +1,6 @@
-type Person =  {
-    name:string,
-    dateOfBirth?:Date
+type Person = {
+    name: string,
+    dateOfBirth?: Date
 }
 
 // A mock implementation of loadPerson, you can replace it with the real function
@@ -12,12 +12,12 @@ function loadPerson(): Person | null {
 }
 
 
-function assert(condition:unknown, message:string): asserts condition{
-    if(!condition) throw new Error(message)
+function assert(condition: unknown, message: string): asserts condition {
+    if (!condition) throw new Error(message)
 }
 
-function assertDate(value:unknown) :asserts value is Date{
-    if(value instanceof Date) return 
+function assertDate(value: unknown): asserts value is Date {
+    if (value instanceof Date) return
     else throw new TypeError('value is not a date')
 }
 
