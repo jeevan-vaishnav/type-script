@@ -1,35 +1,31 @@
-// function overload 
-// this two signature not part of java script 
-function reverseOverload(string: string): string;
-function reverseOverload(string: string[]): string[]
+/**Call Sinatures */
+// type AddType = {
+//     (a: number, b: number): number,
+//     (a: number, b: number, c: number): number,
+//     debug?: string
+// }
+// const AddFun: AddType = (a: number, b: number, c?: number) => {
+//     return a + b + (c != null ? c : 0);
+// };
 
-// this is the one body function to handle one case of overload
-function reverseOverload(stringOrStringArray: string | string[]) {
-    if (typeof stringOrStringArray === 'string') {
-        return stringOrStringArray.split('').reverse().join();
-    } else {
-        return stringOrStringArray.slice().reverse();
-    }
-}
+// AddFun.debug = "Addition Function"
+// console.log(AddFun.debug);
+// console.log(AddFun(4, 5, 10))
 
-console.log(reverseOverload('hello'))
-console.log(reverseOverload(['h', 'e', 'l', 'l', 'o']))
+/**PointCreator */
 
-// lets dems with other example 
+// type PointCreator = {
+//     new(x: number, y: number): { x: number, y: number },
+//     new(x: number, y: number, z: number): { x: number, y: number, z: string },
+//     debug: string
+// }
+// const Point: PointCreator = class {
+//     constructor(public x: number, public y: number) { }
+// }
 
-function makeDateFun(timestampOrYear: number, month?: number, day?: number): Date {
-    if (month != null && day != null) {
-        return new Date(timestampOrYear, month - 1, day);
-    } else {
-        return new Date(timestampOrYear)
-    }
-}
 
-const first = makeDateFun(2000, 10, 14)
-console.log(first)
-const second = makeDateFun(2000);
-console.log(second)
-const third = makeDateFun(2000, 1)
-console.log(third)
-const epoc = makeDateFun(0);
-console.log(epoc)
+
+
+
+
+
